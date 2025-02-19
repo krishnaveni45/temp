@@ -76,7 +76,6 @@
         padding: 3px;
       }
     </style>
-    
   </head>
   <body>
     <div class="container">
@@ -89,9 +88,43 @@
           <div class="caption">It's quick and easy.</div>
         </div>
       </div>
+      <hr />
+      <div id="root"></div>
+    </div>
+    <script>
+      const showData = () => {
+        let firstname = document.getElementById("firstname").value;
+        let surname = document.getElementById("surname").value;
+        let email = document.getElementById("email").value
+        let password = document.getElementById("password").value
+        let gender = document.getElementsByName("gender");
+        let pronoun = document.getElementById("prSelect").value
+        let day =  document.getElementById("day").value
+        let month =  document.getElementById("month").value
+        let year =  document.getElementById("year").value
+        let dob = `${day}-${month}-${year}`
+        let g = "";
+        if (gender[0].checked) g = "Female";
+        if (gender[1].checked) g = "Male";
+        if (gender[2].checked) g = pronoun;
+        let str = `
+        <div>
+          <p>Name:${firstname} ${surname}</p>
+          <p>Email:${email}</p>
+          <p>Password:${password}</p>
+          <p>Gender:${g}</p>
+          <p>Date of Birth:${dob}</p>
+        </div>
+        `;
+        root.innerHTML = str;
+      };
+
+      const showForm = () => {
+        let str = `
+      
       <div class="row">
-        <input type="text" placeholder="Firstname" />
-        <input type="text" placeholder="Surname" />
+        <input type="text" id="firstname" placeholder="Firstname" />
+        <input type="text" id="surname" placeholder="Surname" />
       </div>
       <div class="row" style="justify-content: start">
         <div class="leftCaption">
@@ -115,43 +148,65 @@
       <div class="row">
         <div class="radioClass">
           <div><label> Female</label></div>
-          <div><input type="radio" name="gender" /></div>
+          <div><input type="radio" name="gender" onclick="togglePronoun()" /></div>
         </div>
         <div class="radioClass">
           <div><label> Male</label></div>
-          <div><input type="radio" name="gender" /></div>
+          <div><input type="radio" name="gender" onclick="togglePronoun()" /></div>
         </div>
         <div class="radioClass">
           <div><label> Custom</label></div>
-          <div><input type="radio" name="gender" /></div>
+          <div><input type="radio" name="gender" onclick="togglePronoun()" /></div>
         </div>
       </div>
+
+     <div class="row">
+      <select id="prSelect" style="display:none">
+        <option value="NA">Select your pronoun</option>
+        <option value="She">She:"Wish her a happy birthday"</option>
+        <option value="He">He:"Wish him a happy birthday"</option>
+        <option value="They">They:"Wish them a happy birthday"</option>
+      </select>
+     </div>
+
       <div class="row">
-        <input type="text" placeholder="Mobule number or email address" />
+        <input type="text" id="email" placeholder="Mobule number or email address" />
       </div>
       <div class="row">
-        <input type="password" placeholder="New password" />
+        <input type="password" id="password" placeholder="New password" />
       </div>
       <div class="row">
-        <button>Sign Up</button>
+        <button onclick='showData()'>Sign Up</button>
       </div>
-    </div>
-    <script>
-        let str = "";
-        for (let i = 1; i <= 31; i++) {
-          str += `<option>${i}</option>`;
+      `;
+        root.innerHTML = str;
+      };
+
+      showForm();
+      let str = "";
+      for (let i = 1; i <= 31; i++) {
+        str += `<option>${i}</option>`;
+      }
+      day.innerHTML = str;
+      str = "";
+      for (let i = 1; i <= 12; i++) {
+        str += `<option>${i}</option>`;
+      }
+      month.innerHTML = str;
+      str = "";
+      for (let i = 1905; i <= 2025; i++) {
+        str += `<option>${i}</option>`;
+      }
+      year.innerHTML = str;
+
+      const togglePronoun = () => {
+        let p = document.getElementsByName("gender");
+        if (p[2].checked) {
+          prSelect.style.display = "block";
+        } else {
+          prSelect.style.display = "none";
         }
-        day.innerHTML = str;
-        str=""
-        for (let i = 1; i <= 12; i++) {
-          str += `<option>${i}</option>`;
-        }
-        month.innerHTML = str;
-        str=""
-        for (let i = 1905; i <= 2025; i++) {
-          str += `<option>${i}</option>`;
-        }
-        year.innerHTML = str;
-      </script>
+      };
+    </script>
   </body>
 </html>
