@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src = "https://picsum.photos/200/300" width="100px" id="ball"/>
+    <script>
+    //    let top = 0
+    //    function ballfall(){
+    //     top++;
+    //     setTimeout(ballfall, 1000);
+
+        // function f1(){
+        //     let d = new Date();
+        //     root.innerHTML = d;
+        //     top++;
+        // ball.style.top = top+"px";
+        // setTimeout(ballfall , 1000);
+        // }
+        
+       ball.style.position = "absolute";
+       let  t = 0;
+       function ballfall(){
+        t++;
+        if(t>400){
+            t=1;
+            1 = Math.random() * 500;
+        }
+        ball.style.top = t + "px";
+        ball.style.left=
+       }
+    </script>
+</body>
+</html>
